@@ -70,7 +70,7 @@ install-%DIR%PROGRAMS: $(%DIR%_PROGRAMS)
 ## expects.
 ?LIBTOOL?	    $(AM_V_echo) " $(INSTALL_PROGRAM_ENV) $(LIBTOOL) $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=install $(INSTALL_PROGRAM) $$files '$(DESTDIR)$(%NDIR%dir)$$dir'"; \
 ?LIBTOOL?	    for f in $$files; do $(AM_V_INSTALL) "$(DESTDIR)$(%NDIR%dir)$$dir/`basename $$f`"; done; \
-?LIBTOOL?	    $(INSTALL_PROGRAM_ENV) $(LIBTOOL) $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=install $(INSTALL_PROGRAM) $$files "$(DESTDIR)$(%NDIR%dir)$$dir" || exit $$?; \
+?LIBTOOL?	    $(INSTALL_PROGRAM_ENV) $(LIBTOOL) $(AM_V_lt) $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=install $(INSTALL_PROGRAM) $$files "$(DESTDIR)$(%NDIR%dir)$$dir" || exit $$?; \
 	    } \
 ?!BASE?	  ;; esac \
 	; done

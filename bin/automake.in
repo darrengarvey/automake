@@ -1108,6 +1108,11 @@ sub handle_silent ()
     # '$(AM_V_echo)' prints output in verbose builds and nothing in
     # quiet ones.
     define_verbose_var ('echo', ':', 'echo');
+    # Define '$(AM_V_INSTALL)' that *only* shows up during quiet
+    # builds. This is useful when the verbose output for an install
+    # rule doesn't nicely translate into quiet output. When installing
+    # files, use this with the files that are being installed.
+    define_verbose_var ('INSTALL', 'echo "  INSTALL"', ':');
 }
 
 

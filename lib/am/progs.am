@@ -28,7 +28,7 @@ install-%DIR%PROGRAMS: $(%DIR%_PROGRAMS)
 ## a syntax error in sh.
 	@list='$(%DIR%_PROGRAMS)'; test -n "$(%NDIR%dir)" || list=; \
 	if test -n "$$list"; then \
-	  echo " $(MKDIR_P) '$(DESTDIR)$(%NDIR%dir)'"; \
+	  $(AM_V_echo) " $(MKDIR_P) '$(DESTDIR)$(%NDIR%dir)'"; \
 	  $(MKDIR_P) "$(DESTDIR)$(%NDIR%dir)" || exit 1; \
 	fi; \
 	for p in $$list; do echo "$$p $$p"; done | \
@@ -57,7 +57,7 @@ install-%DIR%PROGRAMS: $(%DIR%_PROGRAMS)
 	  END { for (d in files) print "f", d, files[d] }' | \
 	while read type dir files; do \
 ?!BASE?	  case $$type in \
-?!BASE?	  d) echo " $(MKDIR_P) '$(DESTDIR)$(%NDIR%dir)/$$dir'"; \
+?!BASE?	  d) $(AM_V_echo) " $(MKDIR_P) '$(DESTDIR)$(%NDIR%dir)/$$dir'"; \
 ?!BASE?	     $(MKDIR_P) "$(DESTDIR)$(%NDIR%dir)/$$dir" || exit $$?;; \
 ?!BASE?	  f) \
 	    if test "$$dir" = .; then dir=; else dir=/$$dir; fi; \
@@ -94,7 +94,7 @@ uninstall-%DIR%PROGRAMS:
 ?!BASE?	      -e 'x;s,[^/]*$$,,;G;s,\n,,' \
 	`; \
 	test -n "$$list" || exit 0; \
-	echo " ( cd '$(DESTDIR)$(%NDIR%dir)' && rm -f" $$files ")"; \
+	$(AM_V_echo) " ( cd '$(DESTDIR)$(%NDIR%dir)' && rm -f" $$files ")"; \
 	cd "$(DESTDIR)$(%NDIR%dir)" && rm -f $$files
 endif %?INSTALL%
 
@@ -115,11 +115,11 @@ clean-%DIR%PROGRAMS:
 ## FIXME: In the future (i.e., when it works) it would be nice to delegate
 ## this task to "libtool --mode=clean".
 ?LIBTOOL?	@list='$(%DIR%_PROGRAMS)'; test -n "$$list" || exit 0; \
-?LIBTOOL?	echo " rm -f" $$list; \
+?LIBTOOL?	$(AM_V_echo) " rm -f" $$list; \
 ?LIBTOOL?	rm -f $$list || exit $$?; \
 ?LIBTOOL?	test -n "$(EXEEXT)" || exit 0; \
 ?LIBTOOL?	list=`for p in $$list; do echo "$$p"; done | sed 's/$(EXEEXT)$$//'`; \
-?LIBTOOL?	echo " rm -f" $$list; \
+?LIBTOOL?	$(AM_V_echo) " rm -f" $$list; \
 ?LIBTOOL?	rm -f $$list
 
 

@@ -33,7 +33,7 @@ install-%DIR%PYTHON: $(%DIR%_PYTHON)
 if %?BASE%
 	@list='$(%DIR%_PYTHON)'; dlist=; list2=; test -n "$(%NDIR%dir)" || list=; \
 	if test -n "$$list"; then \
-	  echo " $(MKDIR_P) '$(DESTDIR)$(%NDIR%dir)'"; \
+	  $(AM_V_echo) " $(MKDIR_P) '$(DESTDIR)$(%NDIR%dir)'"; \
 	  $(MKDIR_P) "$(DESTDIR)$(%NDIR%dir)" || exit 1; \
 	fi; \
 	for p in $$list; do \
@@ -63,7 +63,7 @@ if %?BASE%
 else !%?BASE%
 	@list='$(%DIR%_PYTHON)'; test -n "$(%NDIR%dir)" || list=; \
 	if test -n "$$list"; then \
-	  echo " $(MKDIR_P) '$(DESTDIR)$(%NDIR%dir)'"; \
+	  $(AM_V_echo) " $(MKDIR_P) '$(DESTDIR)$(%NDIR%dir)'"; \
 	  $(MKDIR_P) "$(DESTDIR)$(%NDIR%dir)" || exit 1; \
 	fi; \
 	$(am__nobase_list) | { while read dir files; do \
@@ -74,7 +74,7 @@ else !%?BASE%
 	    else :; fi; done; \
 	  test -z "$$xfiles" || { \
 	    test "x$$dir" = x. || { \
-	      echo "$(MKDIR_P) '$(DESTDIR)$(%NDIR%dir)/$$dir'"; \
+	      $(AM_V_echo) "$(MKDIR_P) '$(DESTDIR)$(%NDIR%dir)/$$dir'"; \
 	      $(MKDIR_P) "$(DESTDIR)$(%NDIR%dir)/$$dir"; }; \
 ## Don't perform translation, since script name is important.
 	    echo " $(INSTALL_DATA) $$xfiles '$(DESTDIR)$(%NDIR%dir)/$$dir'"; \
@@ -113,7 +113,7 @@ uninstall-%DIR%PYTHON:
 	pyc_files=`echo "$$py_files" | sed 's|$$|c|'`; \
 	pyo_files=`echo "$$py_files" | sed 's|$$|o|'`; \
 	py_files_pep3147=`echo "$$py_files" | $(am__pep3147_tweak)`; \
-	echo "$$py_files_pep3147";\
+	$(AM_V_echo) "$$py_files_pep3147";\
 	pyc_files_pep3147=`echo "$$py_files_pep3147" | sed 's|$$|c|'`; \
 	pyo_files_pep3147=`echo "$$py_files_pep3147" | sed 's|$$|o|'`; \
 	st=0; \

@@ -29,13 +29,13 @@ if %?SUBDIRS%
 RECURSIVE_TARGETS += installdirs-recursive
 installdirs: installdirs-recursive
 installdirs-am:%installdirs-local%
-?am__installdirs?	for dir in %am__installdirs%; do \
+?am__installdirs?	$(AM_V_at)for dir in %am__installdirs%; do \
 ?am__installdirs?	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 ?am__installdirs?	done
 else !%?SUBDIRS%
 .PHONY: installdirs
 installdirs:%installdirs-local%
-?am__installdirs?	for dir in %am__installdirs%; do \
+?am__installdirs?	$(AM_V_at)for dir in %am__installdirs%; do \
 ?am__installdirs?	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 ?am__installdirs?	done
 endif !%?SUBDIRS%

@@ -31,7 +31,7 @@ class%NDIR%.stamp: $(am__java_sources)
 	    if test -f $$p; then d=; else d="$(srcdir)/"; fi; \
 	    list2="$$list2 $$d$$p"; \
 	  done; \
-	  echo '$(CLASSPATH_ENV) $(JAVAC) -d $(JAVAROOT) $(AM_JAVACFLAGS) $(JAVACFLAGS) '"$$list2"; \
+	  $(AM_V_echo) '$(CLASSPATH_ENV) $(JAVAC) -d $(JAVAROOT) $(AM_JAVACFLAGS) $(JAVACFLAGS) '"$$list2"; \
 	  $(CLASSPATH_ENV) $(JAVAC) -d $(JAVAROOT) $(AM_JAVACFLAGS) $(JAVACFLAGS) $$list2; \
 	else :; fi
 	echo timestamp > $@
@@ -51,7 +51,7 @@ install-%DIR%JAVA: class%NDIR%.stamp
 ## we just install all the .class files that got built into this
 ## directory.  This is not optimal, but will have to do for now.
 	@test -n "$(%DIR%_JAVA)" && test -n "$(%NDIR%dir)" || exit 0; \
-	echo " $(MKDIR_P) '$(DESTDIR)$(%NDIR%dir)'"; \
+	$(AM_V_echo) " $(MKDIR_P) '$(DESTDIR)$(%NDIR%dir)'"; \
 	$(MKDIR_P) "$(DESTDIR)$(%NDIR%dir)"; \
 	set x *.class; shift; test "$$1" != "*.class" || exit 0; \
 	echo " $(INSTALL_DATA)" "$$@" "'$(DESTDIR)$(%NDIR%dir)/$$p'"; \
@@ -69,7 +69,7 @@ uninstall-%DIR%JAVA:
 	@$(NORMAL_UNINSTALL)
 	@test -n "$(%DIR%_JAVA)" && test -n "$(%NDIR%dir)" || exit 0; \
 	set x *.class; shift; test "$$1" != "*.class" || exit 0; \
-	echo " ( cd '$(DESTDIR)$(%NDIR%dir)' && rm -f" "$$@" ")"; \
+	$(AM_V_echo) " ( cd '$(DESTDIR)$(%NDIR%dir)' && rm -f" "$$@" ")"; \
 	cd "$(DESTDIR)$(%NDIR%dir)" && rm -f "$$@"
 endif %?INSTALL%
 

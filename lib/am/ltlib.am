@@ -41,7 +41,7 @@ if %?BASE%
 	  else :; fi; \
 	done; \
 	test -z "$$list2" || { \
-	  echo " $(MKDIR_P) '$(DESTDIR)$(%NDIR%dir)'"; \
+	  $(AM_V_echo) " $(MKDIR_P) '$(DESTDIR)$(%NDIR%dir)'"; \
 	  $(MKDIR_P) "$(DESTDIR)$(%NDIR%dir)" || exit 1; \
 ## Note that we explicitly set the libtool mode.  This avoids any lossage
 ## if the program doesn't have a name that libtool expects.
@@ -55,7 +55,7 @@ if %?BASE%
 else !%?BASE%
 	@list='$(%DIR%_LTLIBRARIES)'; test -n "$(%NDIR%dir)"  || list=; \
 	if test -n "$$list"; then \
-	    echo " $(MKDIR_P) '$(DESTDIR)$(%NDIR%dir)'"; \
+	    $(AM_V_echo) " $(MKDIR_P) '$(DESTDIR)$(%NDIR%dir)'"; \
 	    $(MKDIR_P) "$(DESTDIR)$(%NDIR%dir)" || exit 1; \
 	fi; \
 	for p in $$list; do if test -f "$$p"; then echo "$$p $$p"; else :; fi; done | \
@@ -67,7 +67,7 @@ else !%?BASE%
 	while read dir files; do \
 	  test -z "$$files" || { \
 	    test "x$$dir" = x. || { \
-	      echo " $(MKDIR_P) '$(DESTDIR)$(%NDIR%dir)/$$dir'"; \
+	      $(AM_V_echo) " $(MKDIR_P) '$(DESTDIR)$(%NDIR%dir)/$$dir'"; \
 	      $(MKDIR_P) "$(DESTDIR)$(%NDIR%dir)/$$dir"; }; \
 ## Note that we explicitly set the libtool mode.  This avoids any lossage
 ## if the program doesn't have a name that libtool expects.
@@ -118,6 +118,6 @@ clean-%DIR%LTLIBRARIES:
 	      sed 's|^[^/]*$$|.|; s|/[^/]*$$||; s|$$|/so_locations|' | \
 	      sort -u`; \
 	test -z "$$locs" || { \
-	  echo rm -f $${locs}; \
+	  $(AM_V_echo) rm -f $${locs}; \
 	  rm -f $${locs}; \
 	}

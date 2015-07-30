@@ -38,7 +38,7 @@ if %?BASE%
 	  else :; fi; \
 	done; \
 	test -z "$$list2" || { \
-	  echo " $(MKDIR_P) '$(DESTDIR)$(%NDIR%dir)'"; \
+	  $(AM_V_echo) " $(MKDIR_P) '$(DESTDIR)$(%NDIR%dir)'"; \
 	  $(MKDIR_P) "$(DESTDIR)$(%NDIR%dir)" || exit 1; \
 	  echo " $(INSTALL_DATA) $$list2 '$(DESTDIR)$(%NDIR%dir)'"; \
 	  $(INSTALL_DATA) $$list2 "$(DESTDIR)$(%NDIR%dir)" || exit $$?; }
@@ -47,7 +47,7 @@ else !%?BASE%
 ## a syntax error in sh.
 	@list='$(%DIR%_LIBRARIES)'; test -n "$(%NDIR%dir)" || list=; \
 	if test -n "$$list"; then \
-	  echo " $(MKDIR_P) '$(DESTDIR)$(%NDIR%dir)'"; \
+	  $(AM_V_echo) " $(MKDIR_P) '$(DESTDIR)$(%NDIR%dir)'"; \
 	  $(MKDIR_P) "$(DESTDIR)$(%NDIR%dir)" || exit 1; \
 	fi; \
 	$(am__nobase_list) | while read dir files; do \
@@ -55,7 +55,7 @@ else !%?BASE%
 	    if test -f "$$p"; then xfiles="$$xfiles $$p"; else :; fi; done; \
 	  test -z "$$xfiles" || { \
 	    test "x$$dir" = x. || { \
-	      echo " $(MKDIR_P) '$(DESTDIR)$(%NDIR%dir)/$$dir'"; \
+	      $(AM_V_echo) " $(MKDIR_P) '$(DESTDIR)$(%NDIR%dir)/$$dir'"; \
 	      $(MKDIR_P) "$(DESTDIR)$(%NDIR%dir)/$$dir"; }; \
 	    echo " $(INSTALL_DATA) $$xfiles '$(DESTDIR)$(%NDIR%dir)/$$dir'"; \
 	    $(INSTALL_DATA) $$xfiles "$(DESTDIR)$(%NDIR%dir)/$$dir" || exit $$?; }; \
@@ -75,7 +75,7 @@ endif !%?BASE%
 ## Must ranlib after installing because mod time changes.
 ## cd to target directory because AIX ranlib messes up with whitespace
 ## in the argument.
-	    echo " ( cd '$(DESTDIR)$(%NDIR%dir)' && $(RANLIB) $$f )"; \
+	    $(AM_V_echo) " ( cd '$(DESTDIR)$(%NDIR%dir)' && $(RANLIB) $$f )"; \
 	    ( cd "$(DESTDIR)$(%NDIR%dir)" && $(RANLIB) $$f ) || exit $$?; \
 	  else :; fi; \
 	done

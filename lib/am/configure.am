@@ -39,7 +39,7 @@ endif %?TOPDIR_P%
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
 	    *$$dep*) \
-?TOPDIR_P?	      echo ' cd $(srcdir) && $(AUTOMAKE) %AUTOMAKE-OPTIONS%'; \
+?TOPDIR_P?	      $(AM_V_echo) ' cd $(srcdir) && $(AUTOMAKE) %AUTOMAKE-OPTIONS%'; \
 ?TOPDIR_P?	      $(am__cd) $(srcdir) && $(AUTOMAKE) %AUTOMAKE-OPTIONS% \
 ?TOPDIR_P?		&& exit 0; \
 ?!TOPDIR_P?	      ( cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh ) \
@@ -52,7 +52,7 @@ endif %?TOPDIR_P%
 	  esac; \
 	done; \
 ## Otherwise, rebuild only this file.
-	echo ' cd $(top_srcdir) && $(AUTOMAKE) %AUTOMAKE-OPTIONS% %MAKEFILE-AM-SOURCES%'; \
+	$(AM_V_echo) ' cd $(top_srcdir) && $(AUTOMAKE) %AUTOMAKE-OPTIONS% %MAKEFILE-AM-SOURCES%'; \
 	$(am__cd) $(top_srcdir) && \
 	  $(AUTOMAKE) %AUTOMAKE-OPTIONS% %MAKEFILE-AM-SOURCES%
 
@@ -72,13 +72,13 @@ endif %?TOPDIR_P%
 ## Don't prefix $(top_builddir), because GNU make will strip it out
 ## when it's '.'.
 	  *config.status*) \
-?TOPDIR_P?	    echo ' $(SHELL) ./config.status'; \
+?TOPDIR_P?	    $(AM_V_echo) ' $(SHELL) ./config.status'; \
 ?TOPDIR_P?	    $(SHELL) ./config.status;; \
 ?!TOPDIR_P?	    cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh;; \
 	  *) \
 ## FIXME: $(am__maybe_remake_depfiles) lets us re-run the rule to create the
 ## .P files.  Ideally we wouldn't have to do this by hand.
-	    echo ' cd $(top_builddir) && $(SHELL) ./config.status %CONFIG-MAKEFILE% $(am__maybe_remake_depfiles)'; \
+	    $(AM_V_echo) ' cd $(top_builddir) && $(SHELL) ./config.status %CONFIG-MAKEFILE% $(am__maybe_remake_depfiles)'; \
 	    cd $(top_builddir) && $(SHELL) ./config.status %CONFIG-MAKEFILE% $(am__maybe_remake_depfiles);; \
 	esac;
 

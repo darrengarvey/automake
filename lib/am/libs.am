@@ -41,7 +41,7 @@ if %?BASE%
 	  $(AM_V_echo) " $(MKDIR_P) '$(DESTDIR)$(%NDIR%dir)'"; \
 	  $(MKDIR_P) "$(DESTDIR)$(%NDIR%dir)" || exit 1; \
 	  $(AM_V_echo) " $(INSTALL_DATA) $$list2 '$(DESTDIR)$(%NDIR%dir)'"; \
-	  for f in $$list2; do $(AM_V_INSTALL) `basename $$f`; done; \
+	  for f in $$list2; do $(AM_V_INSTALL) "$(DESTDIR)$(%NDIR%dir)/`basename $$f`"; done; \
 	  $(INSTALL_DATA) $$list2 "$(DESTDIR)$(%NDIR%dir)" || exit $$?; }
 else !%?BASE%
 ## Funny invocation because Makefile variable can be empty, leading to
@@ -59,7 +59,7 @@ else !%?BASE%
 	      $(AM_V_echo) " $(MKDIR_P) '$(DESTDIR)$(%NDIR%dir)/$$dir'"; \
 	      $(MKDIR_P) "$(DESTDIR)$(%NDIR%dir)/$$dir"; }; \
 	    $(AM_V_echo) " $(INSTALL_DATA) $$xfiles '$(DESTDIR)$(%NDIR%dir)/$$dir'"; \
-	    for f in $$xfiles; do $(AM_V_INSTALL) `basename $$f`; done; \
+	    for f in $$xfiles; do $(AM_V_INSTALL) "$(DESTDIR)$(%NDIR%dir)/$$dir`basename $$f`"; done; \
 	    $(INSTALL_DATA) $$xfiles "$(DESTDIR)$(%NDIR%dir)/$$dir" || exit $$?; }; \
 	done
 endif !%?BASE%

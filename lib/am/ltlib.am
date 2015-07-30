@@ -48,10 +48,10 @@ if %?BASE%
 ## Use INSTALL and not INSTALL_DATA because libtool knows the right
 ## permissions to use.
 ?LIBTOOL?	  $(AM_V_echo) " $(LIBTOOL) $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=install $(INSTALL) $(INSTALL_STRIP_FLAG) $$list2 '$(DESTDIR)$(%NDIR%dir)'"; \
-?LIBTOOL?	  for f in $$list2; do $(AM_V_INSTALL) `basename $$f`; done; \
+?LIBTOOL?	  for f in $$list2; do $(AM_V_INSTALL) "$(DESTDIR)$(%NDIR%dir)/`basename $$f`"; done; \
 ?LIBTOOL?	  $(LIBTOOL) $(AM_V_lt) $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=install $(INSTALL) $(INSTALL_STRIP_FLAG) $$list2 "$(DESTDIR)$(%NDIR%dir)"; \
 ?!LIBTOOL?	  $(AM_V_echo) " $(INSTALL) $(INSTALL_STRIP_FLAG) $$list '$(DESTDIR)$(%NDIR%dir)'"; \
-?!LIBTOOL?	  for f in $$list; do $(AM_V_INSTALL) `basename $$f`; done; \
+?!LIBTOOL?	  for f in $$list; do $(AM_V_INSTALL) "$(DESTDIR)$(%NDIR%dir)/`basename $$f`"; done; \
 ?!LIBTOOL?	  $(AM_V_INSTALL) $(INSTALL_STRIP_FLAG) $$list "$(DESTDIR)$(%NDIR%dir)"; \
 	}
 else !%?BASE%
@@ -76,10 +76,10 @@ else !%?BASE%
 ## Use INSTALL and not INSTALL_DATA because libtool knows the right
 ## permissions to use.
 ?LIBTOOL?	    $(AM_V_echo) " $(LIBTOOL) $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=install $(INSTALL) $(INSTALL_STRIP_FLAG) $$files '$(DESTDIR)$(%NDIR%dir)/$$dir'"; \
-?LIBTOOL?	    for f in $$files; do $(AM_V_INSTALL) `basename $$f`; done; \
+?LIBTOOL?	    for f in $$files; do $(AM_V_INSTALL) "$(DESTDIR)$(%NDIR%dir)/$$dir/`basename $$f`"; done; \
 ?LIBTOOL?	    $(LIBTOOL) $(AM_V_lt) $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=install $(INSTALL) $(INSTALL_STRIP_FLAG) $$files "$(DESTDIR)$(%NDIR%dir)/$$dir" || exit $$?; \
 ?!LIBTOOL?	    $(AM_V_echo) " $(INSTALL) $(INSTALL_STRIP_FLAG) $$files '$(DESTDIR)$(%NDIR%dir)/$$dir'"; \
-?!LIBTOOL?	    for f in $$files; do $(AM_V_INSTALL) `basename $$f`; done; \
+?!LIBTOOL?	    for f in $$files; do $(AM_V_INSTALL) "$(DESTDIR)$(%NDIR%dir)/$$dir/`basename $$f`"; done; \
 ?!LIBTOOL?	    $(AM_V_INSTALL) $(INSTALL_STRIP_FLAG) $$files "$(DESTDIR)$(%NDIR%dir)/$$dir" || exit $$?; \
 	  }; \
 	done

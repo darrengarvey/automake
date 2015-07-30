@@ -80,7 +80,7 @@ else !%?BASE%
 ?LIBTOOL?	    $(LIBTOOL) $(AM_V_lt) $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=install $(INSTALL) $(INSTALL_STRIP_FLAG) $$files "$(DESTDIR)$(%NDIR%dir)/$$dir" || exit $$?; \
 ?!LIBTOOL?	    $(AM_V_echo) " $(INSTALL) $(INSTALL_STRIP_FLAG) $$files '$(DESTDIR)$(%NDIR%dir)/$$dir'"; \
 ?!LIBTOOL?	    $(AM_V_INSTALL) "$$files"; \
-?!LIBTOOL?	    $(INSTALL) $(INSTALL_STRIP_FLAG) $$files "$(DESTDIR)$(%NDIR%dir)/$$dir" || exit $$?; \
+?!LIBTOOL?	    $(AM_V_INSTALL) $(INSTALL_STRIP_FLAG) $$files "$(DESTDIR)$(%NDIR%dir)/$$dir" || exit $$?; \
 	  }; \
 	done
 endif !%?BASE%

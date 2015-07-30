@@ -64,7 +64,7 @@ install-%DIR%PROGRAMS: $(%DIR%_PROGRAMS)
 	    test -z "$$files" || { \
 ?!LIBTOOL?	      $(AM_V_echo) " $(INSTALL_PROGRAM_ENV) $(INSTALL_PROGRAM) $$files '$(DESTDIR)$(%NDIR%dir)$$dir'"; \
 ?!LIBTOOL?	      for f in $$files; do $(AM_V_INSTALL) "$(DESTDIR)$(%NDIR%dir)$$dir/`basename $$f`"; done; \
-?!LIBTOOL?	      $(INSTALL_PROGRAM_ENV) $(INSTALL_PROGRAM) $$files "$(DESTDIR)$(%NDIR%dir)$$dir" || exit $$?; \
+?!LIBTOOL?	      $(AM_V_at) $(INSTALL_PROGRAM_ENV) $(INSTALL_PROGRAM) $$files "$(DESTDIR)$(%NDIR%dir)$$dir" || exit $$?; \
 ## Note that we explicitly set the libtool mode.  This avoids any
 ## lossage if the install program doesn't have a name that libtool
 ## expects.

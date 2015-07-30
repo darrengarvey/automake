@@ -45,7 +45,8 @@ if %?BASE%
 	  echo "$$d$$p"; \
 	done | $(am__base_list) | \
 	while read files; do \
-	  echo " $(INSTALL_%ONE_PRIMARY%) $$files '$(DESTDIR)$(%NDIR%dir)'"; \
+	  $(AM_V_echo) " $(INSTALL_%ONE_PRIMARY%) $$files '$(DESTDIR)$(%NDIR%dir)'"; \
+	  $(AM_V_INSTALL) "$$files"; \
 	  $(INSTALL_%ONE_PRIMARY%) $$files "$(DESTDIR)$(%NDIR%dir)" || exit $$?; \
 	done
 else !%?BASE%
@@ -62,7 +63,8 @@ else !%?BASE%
 	    test "x$$dir" = x. || { \
 	      $(AM_V_echo) " $(MKDIR_P) '$(DESTDIR)$(%NDIR%dir)/$$dir'"; \
 	      $(MKDIR_P) "$(DESTDIR)$(%NDIR%dir)/$$dir"; }; \
-	    echo " $(INSTALL_%ONE_PRIMARY%) $$xfiles '$(DESTDIR)$(%NDIR%dir)/$$dir'"; \
+	    $(AM_V_echo) " $(INSTALL_%ONE_PRIMARY%) $$xfiles '$(DESTDIR)$(%NDIR%dir)/$$dir'"; \
+	    $(AM_V_INSTALL) "$$xfiles"; \
 	    $(INSTALL_%ONE_PRIMARY%) $$xfiles "$(DESTDIR)$(%NDIR%dir)/$$dir" || exit $$?; }; \
 	done
 endif !%?BASE%

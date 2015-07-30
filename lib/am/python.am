@@ -51,7 +51,8 @@ if %?BASE%
 	for file in $$list2; do echo $$file; done | $(am__base_list) | \
 	while read files; do \
 ## Don't perform translation, since script name is important.
-	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(%NDIR%dir)'"; \
+	  $(AM_V_echo) " $(INSTALL_DATA) $$files '$(DESTDIR)$(%NDIR%dir)'"; \
+	  $(AM_V_INSTALL) "$$files"; \
 	  $(INSTALL_DATA) $$files "$(DESTDIR)$(%NDIR%dir)" || exit $$?; \
 	done || exit $$?; \
 ## Byte-compile must be done at install time, since file times are
@@ -77,7 +78,8 @@ else !%?BASE%
 	      $(AM_V_echo) "$(MKDIR_P) '$(DESTDIR)$(%NDIR%dir)/$$dir'"; \
 	      $(MKDIR_P) "$(DESTDIR)$(%NDIR%dir)/$$dir"; }; \
 ## Don't perform translation, since script name is important.
-	    echo " $(INSTALL_DATA) $$xfiles '$(DESTDIR)$(%NDIR%dir)/$$dir'"; \
+	    $(AM_V_echo) " $(INSTALL_DATA) $$xfiles '$(DESTDIR)$(%NDIR%dir)/$$dir'"; \
+	    $(AM_V_INSTALL) "$$xfiles"; \
 	    $(INSTALL_DATA) $$xfiles "$(DESTDIR)$(%NDIR%dir)/$$dir" || exit $$?; }; \
 	done; \
 ## Byte-compile must be done at install time, since file times are

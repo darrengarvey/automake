@@ -47,10 +47,12 @@ if %?BASE%
 ## if the program doesn't have a name that libtool expects.
 ## Use INSTALL and not INSTALL_DATA because libtool knows the right
 ## permissions to use.
-?LIBTOOL?	  echo " $(LIBTOOL) $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=install $(INSTALL) $(INSTALL_STRIP_FLAG) $$list2 '$(DESTDIR)$(%NDIR%dir)'"; \
-?LIBTOOL?	  $(LIBTOOL) $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=install $(INSTALL) $(INSTALL_STRIP_FLAG) $$list2 "$(DESTDIR)$(%NDIR%dir)"; \
-?!LIBTOOL?	  echo " $(INSTALL) $(INSTALL_STRIP_FLAG) $$list '$(DESTDIR)$(%NDIR%dir)'"; \
-?!LIBTOOL?	  $(INSTALL) $(INSTALL_STRIP_FLAG) $$list "$(DESTDIR)$(%NDIR%dir)"; \
+?LIBTOOL?	  $(AM_V_echo) " $(LIBTOOL) $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=install $(INSTALL) $(INSTALL_STRIP_FLAG) $$list2 '$(DESTDIR)$(%NDIR%dir)'"; \
+?LIBTOOL?	  $(AM_V_INSTALL) "$$list2"; \
+?LIBTOOL?	  $(LIBTOOL) $(AM_V_lt) $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=install $(INSTALL) $(INSTALL_STRIP_FLAG) $$list2 "$(DESTDIR)$(%NDIR%dir)"; \
+?!LIBTOOL?	  $(AM_V_echo) " $(INSTALL) $(INSTALL_STRIP_FLAG) $$list '$(DESTDIR)$(%NDIR%dir)'"; \
+?!LIBTOOL?	  $(AM_V_INSTALL) "$$list"; \
+?!LIBTOOL?	  $(AM_V_INSTALL) $(INSTALL_STRIP_FLAG) $$list "$(DESTDIR)$(%NDIR%dir)"; \
 	}
 else !%?BASE%
 	@list='$(%DIR%_LTLIBRARIES)'; test -n "$(%NDIR%dir)"  || list=; \
@@ -73,9 +75,11 @@ else !%?BASE%
 ## if the program doesn't have a name that libtool expects.
 ## Use INSTALL and not INSTALL_DATA because libtool knows the right
 ## permissions to use.
-?LIBTOOL?	    echo " $(LIBTOOL) $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=install $(INSTALL) $(INSTALL_STRIP_FLAG) $$files '$(DESTDIR)$(%NDIR%dir)/$$dir'"; \
-?LIBTOOL?	    $(LIBTOOL) $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=install $(INSTALL) $(INSTALL_STRIP_FLAG) $$files "$(DESTDIR)$(%NDIR%dir)/$$dir" || exit $$?; \
-?!LIBTOOL?	    echo " $(INSTALL) $(INSTALL_STRIP_FLAG) $$files '$(DESTDIR)$(%NDIR%dir)/$$dir'"; \
+?LIBTOOL?	    $(AM_V_echo) " $(LIBTOOL) $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=install $(INSTALL) $(INSTALL_STRIP_FLAG) $$files '$(DESTDIR)$(%NDIR%dir)/$$dir'"; \
+?LIBTOOL?	    $(AM_V_INSTALL) "$$files"; \
+?LIBTOOL?	    $(LIBTOOL) $(AM_V_lt) $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=install $(INSTALL) $(INSTALL_STRIP_FLAG) $$files "$(DESTDIR)$(%NDIR%dir)/$$dir" || exit $$?; \
+?!LIBTOOL?	    $(AM_V_echo) " $(INSTALL) $(INSTALL_STRIP_FLAG) $$files '$(DESTDIR)$(%NDIR%dir)/$$dir'"; \
+?!LIBTOOL?	    $(AM_V_INSTALL) "$$files"; \
 ?!LIBTOOL?	    $(INSTALL) $(INSTALL_STRIP_FLAG) $$files "$(DESTDIR)$(%NDIR%dir)/$$dir" || exit $$?; \
 	  }; \
 	done
@@ -95,9 +99,9 @@ uninstall-%DIR%LTLIBRARIES:
 	for p in $$list; do \
 ?BASE?	  $(am__strip_dir) \
 ?!BASE?	  f=$$p; \
-?LIBTOOL?	  echo " $(LIBTOOL) $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=uninstall rm -f '$(DESTDIR)$(%NDIR%dir)/$$f'"; \
-?LIBTOOL?	  $(LIBTOOL) $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=uninstall rm -f "$(DESTDIR)$(%NDIR%dir)/$$f"; \
-?!LIBTOOL?	  echo " rm -f '$(DESTDIR)$(%NDIR%dir)/$$f'"; \
+?LIBTOOL?	  $(AM_V_echo) " $(LIBTOOL) $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=uninstall rm -f '$(DESTDIR)$(%NDIR%dir)/$$f'"; \
+?LIBTOOL?	  $(LIBTOOL) $(AM_V_lt) $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=uninstall rm -f "$(DESTDIR)$(%NDIR%dir)/$$f"; \
+?!LIBTOOL?	  $(AM_V_echo) " rm -f '$(DESTDIR)$(%NDIR%dir)/$$f'"; \
 ?!LIBTOOL?	  rm -f "$(DESTDIR)$(%NDIR%dir)/$$f"; \
 	done
 endif %?INSTALL%

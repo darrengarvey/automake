@@ -54,7 +54,8 @@ install-%DIR%JAVA: class%NDIR%.stamp
 	$(AM_V_echo) " $(MKDIR_P) '$(DESTDIR)$(%NDIR%dir)'"; \
 	$(MKDIR_P) "$(DESTDIR)$(%NDIR%dir)"; \
 	set x *.class; shift; test "$$1" != "*.class" || exit 0; \
-	echo " $(INSTALL_DATA)" "$$@" "'$(DESTDIR)$(%NDIR%dir)/$$p'"; \
+	$(AM_V_echo) " $(INSTALL_DATA)" "$$@" "'$(DESTDIR)$(%NDIR%dir)/$$p'"; \
+	$(AM_V_INSTALL) "$$@"; \
 	$(INSTALL_DATA) "$$@" "$(DESTDIR)$(%NDIR%dir)"
 endif %?INSTALL%
 

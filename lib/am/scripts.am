@@ -64,7 +64,8 @@ install-%DIR%SCRIPTS: $(%DIR%_SCRIPTS)
 ?!BASE?	  f) \
 	     if test "$$dir" = .; then dir=; else dir=/$$dir; fi; \
 	     test -z "$$files" || { \
-	       echo " $(INSTALL_SCRIPT) $$files '$(DESTDIR)$(%NDIR%dir)$$dir'"; \
+	       $(AM_V_echo) " $(INSTALL_SCRIPT) $$files '$(DESTDIR)$(%NDIR%dir)$$dir'"; \
+	       $(AM_V_INSTALL) "$$files"; \
 	       $(INSTALL_SCRIPT) $$files "$(DESTDIR)$(%NDIR%dir)$$dir" || exit $$?; \
 	     } \
 ?!BASE?	  ;; esac \

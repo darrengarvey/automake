@@ -40,7 +40,8 @@ if %?BASE%
 	test -z "$$list2" || { \
 	  $(AM_V_echo) " $(MKDIR_P) '$(DESTDIR)$(%NDIR%dir)'"; \
 	  $(MKDIR_P) "$(DESTDIR)$(%NDIR%dir)" || exit 1; \
-	  echo " $(INSTALL_DATA) $$list2 '$(DESTDIR)$(%NDIR%dir)'"; \
+	  $(AM_V_echo) " $(INSTALL_DATA) $$list2 '$(DESTDIR)$(%NDIR%dir)'"; \
+	  $(AM_V_INSTALL) "$$list2"; \
 	  $(INSTALL_DATA) $$list2 "$(DESTDIR)$(%NDIR%dir)" || exit $$?; }
 else !%?BASE%
 ## Funny invocation because Makefile variable can be empty, leading to
@@ -57,7 +58,8 @@ else !%?BASE%
 	    test "x$$dir" = x. || { \
 	      $(AM_V_echo) " $(MKDIR_P) '$(DESTDIR)$(%NDIR%dir)/$$dir'"; \
 	      $(MKDIR_P) "$(DESTDIR)$(%NDIR%dir)/$$dir"; }; \
-	    echo " $(INSTALL_DATA) $$xfiles '$(DESTDIR)$(%NDIR%dir)/$$dir'"; \
+	    $(AM_V_echo) " $(INSTALL_DATA) $$xfiles '$(DESTDIR)$(%NDIR%dir)/$$dir'"; \
+	    $(AM_V_INSTALL) "$$xfiles"; \
 	    $(INSTALL_DATA) $$xfiles "$(DESTDIR)$(%NDIR%dir)/$$dir" || exit $$?; }; \
 	done
 endif !%?BASE%

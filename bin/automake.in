@@ -1105,6 +1105,9 @@ sub handle_silent ()
     # *Always* provide the user with '$(AM_V_GEN)', unconditionally.
     define_verbose_tagvar ('GEN');
     define_verbose_var ('at', '@');
+    # '$(AM_V_echo)' prints output in verbose builds and nothing in
+    # quiet ones.
+    define_verbose_var ('echo', ':', 'echo');
 }
 
 

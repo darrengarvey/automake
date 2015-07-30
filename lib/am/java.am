@@ -55,7 +55,7 @@ install-%DIR%JAVA: class%NDIR%.stamp
 	$(MKDIR_P) "$(DESTDIR)$(%NDIR%dir)"; \
 	set x *.class; shift; test "$$1" != "*.class" || exit 0; \
 	$(AM_V_echo) " $(INSTALL_DATA)" "$$@" "'$(DESTDIR)$(%NDIR%dir)/$$p'"; \
-	$(AM_V_INSTALL) "$$@"; \
+	for f in $$@; do $(AM_V_INSTALL) `basename $$f`; done; \
 	$(INSTALL_DATA) "$$@" "$(DESTDIR)$(%NDIR%dir)"
 endif %?INSTALL%
 

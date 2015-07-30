@@ -61,7 +61,7 @@ if %?NOTRANS_MANS%
 	list=; while read file base inst; do \
 	  if test "$$base" = "$$inst"; then list="$$list $$file"; else \
 	    $(AM_V_echo) " $(INSTALL_DATA) '$$file' '$(DESTDIR)$(man%SECTION%dir)/$$inst'"; \
-	    $(AM_V_INSTALL) "$$file"; \
+	    for f in $$file; do $(AM_V_INSTALL) `basename $$f`; \
 	    $(INSTALL_DATA) "$$file" "$(DESTDIR)$(man%SECTION%dir)/$$inst" || exit $$?; \
 	  fi; \
 	done; \
@@ -69,7 +69,7 @@ if %?NOTRANS_MANS%
 	while read files; do \
 	  test -z "$$files" || { \
 	    $(AM_V_echo) " $(INSTALL_DATA) $$files '$(DESTDIR)$(man%SECTION%dir)'"; \
-	    $(AM_V_INSTALL) "$$files"; \
+	    for f in $$files; do $(AM_V_INSTALL) `basename $$f`; done; \
 	    $(INSTALL_DATA) $$files "$(DESTDIR)$(man%SECTION%dir)" || exit $$?; }; \
 	done; }
 endif %?NOTRANS_MANS%
@@ -105,7 +105,7 @@ if %?TRANS_MANS%
 	list=; while read file base inst; do \
 	  if test "$$base" = "$$inst"; then list="$$list $$file"; else \
 	    $(AM_V_echo) " $(INSTALL_DATA) '$$file' '$(DESTDIR)$(man%SECTION%dir)/$$inst'"; \
-	    $(AM_V_INSTALL) "$$file"; \
+	    for f in $$file; do $(AM_V_INSTALL) `basename $$f`; done; \
 	    $(INSTALL_DATA) "$$file" "$(DESTDIR)$(man%SECTION%dir)/$$inst" || exit $$?; \
 	  fi; \
 	done; \
@@ -113,7 +113,7 @@ if %?TRANS_MANS%
 	while read files; do \
 	  test -z "$$files" || { \
 	    $(AM_V_echo) " $(INSTALL_DATA) $$files '$(DESTDIR)$(man%SECTION%dir)'"; \
-	    $(AM_V_INSTALL) "$$files"; \
+	    for f in $$files; do $(AM_V_INSTALL) `basename $$f`; done; \
 	    $(INSTALL_DATA) $$files "$(DESTDIR)$(man%SECTION%dir)" || exit $$?; }; \
 	done; }
 endif %?TRANS_MANS%

@@ -52,7 +52,7 @@ if %?BASE%
 	while read files; do \
 ## Don't perform translation, since script name is important.
 	  $(AM_V_echo) " $(INSTALL_DATA) $$files '$(DESTDIR)$(%NDIR%dir)'"; \
-	  $(AM_V_INSTALL) "$$files"; \
+	  for f in $$files; do $(AM_V_INSTALL) `basename $$f`; done; \
 	  $(INSTALL_DATA) $$files "$(DESTDIR)$(%NDIR%dir)" || exit $$?; \
 	done || exit $$?; \
 ## Byte-compile must be done at install time, since file times are
@@ -79,7 +79,7 @@ else !%?BASE%
 	      $(MKDIR_P) "$(DESTDIR)$(%NDIR%dir)/$$dir"; }; \
 ## Don't perform translation, since script name is important.
 	    $(AM_V_echo) " $(INSTALL_DATA) $$xfiles '$(DESTDIR)$(%NDIR%dir)/$$dir'"; \
-	    $(AM_V_INSTALL) "$$xfiles"; \
+	    for f in $$xfiles; do $(AM_V_INSTALL) `basename $$f`; done; \
 	    $(INSTALL_DATA) $$xfiles "$(DESTDIR)$(%NDIR%dir)/$$dir" || exit $$?; }; \
 	done; \
 ## Byte-compile must be done at install time, since file times are
